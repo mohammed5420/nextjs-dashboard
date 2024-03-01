@@ -3,6 +3,7 @@ import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 export default async function InvoicesTable({
   query,
@@ -54,36 +55,36 @@ export default async function InvoicesTable({
               </div>
             ))}
           </div>
-          <table className="hidden min-w-full text-gray-900 md:table">
-            <thead className="rounded-lg text-left text-sm font-normal">
-              <tr>
-                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+          <Table className="hidden min-w-full text-gray-900 md:table">
+            <TableHeader className="rounded-lg text-left text-sm font-normal">
+              <TableRow>
+                <TableHead scope="col" className="px-4 py-5 font-medium sm:pl-6">
                   Customer
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                </TableHead>
+                <TableHead scope="col" className="px-3 py-5 font-medium">
                   Email
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                </TableHead>
+                <TableHead scope="col" className="px-3 py-5 font-medium">
                   Amount
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                </TableHead>
+                <TableHead scope="col" className="px-3 py-5 font-medium">
                   Date
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                </TableHead>
+                <TableHead scope="col" className="px-3 py-5 font-medium">
                   Status
-                </th>
-                <th scope="col" className="relative py-3 pl-6 pr-3">
+                </TableHead>
+                <TableHead scope="col" className="relative py-3 pl-6 pr-3">
                   <span className="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody className="bg-white">
               {invoices?.map((invoice) => (
-                <tr
+                <TableRow
                   key={invoice.id}
                   className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
                 >
-                  <td className="whitespace-nowrap py-3 pl-6 pr-3">
+                  <TableCell>
                     <div className="flex items-center gap-3">
                       <Image
                         src={invoice.image_url}
@@ -94,29 +95,29 @@ export default async function InvoicesTable({
                       />
                       <p>{invoice.name}</p>
                     </div>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  </TableCell>
+                  <TableCell>
                     {invoice.email}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  </TableCell>
+                  <TableCell>
                     {formatCurrency(invoice.amount)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  </TableCell>
+                  <TableCell>
                     {formatDateToLocal(invoice.date)}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  </TableCell>
+                  <TableCell>
                     <InvoiceStatus status={invoice.status} />
-                  </td>
-                  <td className="whitespace-nowrap py-3 pl-6 pr-3">
+                  </TableCell>
+                  <TableCell>
                     <div className="flex justify-end gap-3">
                       <UpdateInvoice id={invoice.id} />
                       <DeleteInvoice id={invoice.id} />
                     </div>
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
       </div>
     </div>

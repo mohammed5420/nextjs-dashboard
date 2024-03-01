@@ -1,7 +1,6 @@
 import '@/app/ui/global.css'
 import { Metadata } from 'next';
 import { inter } from "@/app/ui/fonts"
-import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: {
@@ -13,17 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          inter.className
-        )}
+        className={`min-h-screen bg-background font-sans antialiased ${inter.className}`}
       >{children}</body>
     </html>
   );
