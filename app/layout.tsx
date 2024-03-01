@@ -1,6 +1,7 @@
 import '@/app/ui/global.css'
 import { Metadata } from 'next';
 import { inter } from "@/app/ui/fonts"
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          inter.className
+        )}
+      >{children}</body>
     </html>
   );
 }
